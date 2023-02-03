@@ -28,14 +28,14 @@ This should result in the following change to `composer.json`:
 
 And then, ...
 ```
-composer require oxid-academy/oxcoin
+composer require oxid-academy/oxcoin:dev-b-7.0.x_resolved
 ```
 
-... which makes it:
+... which results in (in case you run with OXID eShop 7.0.x):
 ```
   "require": {
     ...,
-    "oxid-academy/oxcoin": "dev-master"
+    "oxid-academy/oxcoin": "dev-b-7.0.x_resolved"
   },
 ```
 
@@ -52,4 +52,9 @@ path to your compilation:
 
 ```
 cd /var/www/oxideshop/
-`./vendor/bin/runtests /var/www/oxideshop/source/modules/oxac/oxcoin/Tests/`
+
+bin/oe-console oe:module:activate oxac_oxcoin
+
+`./vendor/bin/phpunit -c /var/www/vendor/oxid-academy/oxcoin/tests/phpunit.xml --testsuite=UnitTests `
+
+`./vendor/bin/phpunit --bootstrap=/var/www/source/bootstrap.php -c /var/www/vendor/oxid-academy/oxcoin/tests/phpunit.xml --testsuite=IntegrationTests `
